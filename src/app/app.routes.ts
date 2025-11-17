@@ -49,6 +49,7 @@ import { RankingComponent } from './entregas/soares/soares/component/ranking/ran
 import { StatisticsComponent } from './entregas/soares/soares/component/statistics/statistics.component';
 import { TeamsComponent } from './entregas/soares/soares/component/teams/teams.component';
 import { QuizComponent } from './entregas/soares/soares/component/quiz/quiz.component';
+import { CharactersPageComponent, SearchPageComponent } from './entregas/fernandez/component';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -135,6 +136,20 @@ export const routes: Routes = [
     { path: 'calinescu', component: CalinescuComponent },
     { path: 'castanyera', component: CastanyeraComponent },
     { path: 'contreras', component: ContrerasComponent },
+      {
+    path: 'fernandez',
+    component: FernandezComponent,
+    children: [
+      { path: '', redirectTo: 'characters', pathMatch: 'full' },
+      { path: 'characters', component: CharactersPageComponent },
+      { path: 'characters/:id', component: CharactersPageComponent },
+      { path: 'search', component: SearchPageComponent },
+      { 
+        path: 'favorites', 
+        loadComponent: () => import('./entregas/fernandez/component/favorites-page/favorites-page.component').then(m => m.FavoritesPageComponent)
+      }
+    ],
+  },
     { path: 'contreras/:id', component: ContrerasComponent },
     { path: 'contreras_comparador', component: ContrerasComparadorComponent },
     { path: 'fernandez', component: FernandezComponent },
